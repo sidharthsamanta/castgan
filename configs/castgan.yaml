@@ -1,0 +1,33 @@
+
+# CAST-GAN training
+data:
+  source_root: ./data/source
+  target_root: ./data/target
+  height: 256
+  width: 128
+  batch_size_gan: 1
+  num_workers: 4
+confidence:
+  temperature: 2.0
+  percentile_k: 50
+model:
+  generator:
+    res_blocks: 6
+    adain: true
+  discriminator:
+    patch: 70
+train:
+  epochs: 50
+  lr_G: 2e-4
+  lr_D: 2e-4
+  beta1: 0.5
+  beta2: 0.999
+  lambda_adv: 1.0
+  lambda_id: 10.0
+  lambda_feat: 1.0
+  lambda_ent: 0.1
+  lambda_src: 1.0
+  lambda_style: 1.0
+out:
+  ckpt_dir: ./outputs/castgan
+  inter_dir: ./outputs/intermediate
